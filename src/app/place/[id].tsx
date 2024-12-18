@@ -17,6 +17,7 @@ import { Loading } from '@/components/loading'
 import { Cover } from '@/components/place-details/cover'
 import { Details } from '@/components/place-details/details'
 import { colors, fontFamily } from '@/styles/theme'
+import Toast from 'react-native-toast-message'
 
 export default function Place() {
   const insets = useSafeAreaInsets()
@@ -43,7 +44,10 @@ export default function Place() {
       const { granted } = await requestCameraPermission()
 
       if (!granted) {
-        return
+        return Toast.show({
+          text1: 'Conceda permissão para usar a câmera!',
+          type: 'error',
+        })
       }
 
       qrCodeRead.current = false
@@ -91,7 +95,11 @@ export default function Place() {
           <Button.Icon icon={IconMapPin} />
         </Button>
 
-        <Button style={{ flex: 1 }} disabled={place.coupons === 0} onPress={handleOpenCamera}>
+        <Button
+          style={{ flex: 1 }}
+          disabled={place.coupons === 0}
+          onPress={handleOpenCamera}
+        >
           <Button.Icon icon={IconScan} />
           <Button.Title>Ler QR Code</Button.Title>
         </Button>
