@@ -12,7 +12,9 @@ export interface FetchPlacesResponse {
 }
 
 export async function fetchPlaces(categoryId: string) {
-  const { data } = await api.get<FetchPlacesResponse[]>(`/markets/category/${categoryId}`)
+  const { data } = await api.get<FetchPlacesResponse[]>(
+    `/markets/category/${categoryId}`
+  )
 
   return data
 }

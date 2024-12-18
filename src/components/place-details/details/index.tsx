@@ -1,11 +1,15 @@
+import {
+  IconMapPin,
+  IconPhone,
+  IconToolsKitchen2,
+} from '@tabler/icons-react-native'
 import { Text, View } from 'react-native'
-import { IconMapPin, IconPhone, IconToolsKitchen2 } from '@tabler/icons-react-native'
 
-import { s } from './styles'
-import { Info } from '../info'
-import { Coupons } from '../coupons'
+import type { GetPlaceResponse } from '@/api'
 import { colors } from '@/styles/theme'
-import { GetPlaceResponse } from '@/api'
+import { Coupons } from '../coupons'
+import { Info } from '../info'
+import { s } from './styles'
 
 interface DetailsProps {
   data: GetPlaceResponse
@@ -26,12 +30,9 @@ export function Details({ data }: DetailsProps) {
       <View style={s.group}>
         <Text style={s.title}>Regulamento</Text>
 
-        {data.rules.map((item) => {
+        {data.rules.map(item => {
           return (
-            <Text
-              key={item.id}
-              style={s.rule}
-            >
+            <Text key={item.id} style={s.rule}>
               {`  \u2022 ${item.description}`}
             </Text>
           )

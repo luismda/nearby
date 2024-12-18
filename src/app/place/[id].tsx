@@ -1,17 +1,22 @@
-import { Modal, Text, View } from 'react-native'
-import { useMemo, useRef, useState } from 'react'
-import { Redirect, useLocalSearchParams } from 'expo-router'
-import { useCameraPermissions, CameraView } from 'expo-camera'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet'
-import { IconArrowLeft, IconMapPin, IconScan, IconTicket } from '@tabler/icons-react-native'
+import {
+  IconArrowLeft,
+  IconMapPin,
+  IconScan,
+  IconTicket,
+} from '@tabler/icons-react-native'
+import { CameraView, useCameraPermissions } from 'expo-camera'
+import { Redirect, useLocalSearchParams } from 'expo-router'
+import { useMemo, useRef, useState } from 'react'
+import { Modal, Text, View } from 'react-native'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
+import { useGetPlace, useRescueCoupon } from '@/api'
 import { Button } from '@/components/button'
 import { Loading } from '@/components/loading'
-import { colors, fontFamily } from '@/styles/theme'
-import { useGetPlace, useRescueCoupon } from '@/api'
 import { Cover } from '@/components/place-details/cover'
 import { Details } from '@/components/place-details/details'
+import { colors, fontFamily } from '@/styles/theme'
 
 export default function Place() {
   const insets = useSafeAreaInsets()
@@ -169,9 +174,9 @@ export default function Place() {
               Utilize o cupom
             </Text>
 
-            <View 
+            <View
               style={{
-                flexDirection: 'row', 
+                flexDirection: 'row',
                 alignItems: 'center',
                 marginTop: 12,
                 gap: 8,
@@ -191,8 +196,8 @@ export default function Place() {
               </Text>
             </View>
 
-            <Button 
-              style={{ 
+            <Button
+              style={{
                 height: 40,
                 width: '100%',
                 marginTop: 'auto',

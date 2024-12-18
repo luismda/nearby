@@ -5,6 +5,6 @@ export function useFetchCategories() {
   return useQuery({
     queryKey: ['categories'],
     queryFn: fetchCategories,
-    staleTime: Infinity,
+    staleTime: Number.POSITIVE_INFINITY,
   })
 }

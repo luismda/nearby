@@ -6,7 +6,7 @@ export function useRescueCoupon() {
 
   return useMutation({
     mutationFn: rescueCoupon,
-    onSuccess: (placeId) => {
+    onSuccess: placeId => {
       return queryClient.invalidateQueries({
         queryKey: ['place', placeId],
       })

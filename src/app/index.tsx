@@ -1,13 +1,13 @@
 import { router } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
-import { Steps } from '@/components/steps'
 import { Button } from '@/components/button'
+import { Steps } from '@/components/steps'
 import { Welcome } from '@/components/welcome'
 
 export default function Index() {
   return (
-    <SafeAreaView 
+    <SafeAreaView
       style={{
         flex: 1,
         gap: 40,

@@ -1,10 +1,10 @@
+import { IconArrowLeft } from '@tabler/icons-react-native'
 import { router } from 'expo-router'
 import { ImageBackground, View } from 'react-native'
-import { IconArrowLeft } from '@tabler/icons-react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { s } from './styles'
 import { Button } from '@/components/button'
+import { s } from './styles'
 
 interface CoverProps {
   uri: string

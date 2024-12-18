@@ -1,8 +1,8 @@
-import { Text, View } from 'react-native'
 import { IconTicket } from '@tabler/icons-react-native'
+import { Text, View } from 'react-native'
 
-import { s } from './styles'
 import { colors } from '@/styles/theme'
+import { s } from './styles'
 
 interface CouponsProps {
   coupons: number
@@ -11,8 +11,8 @@ interface CouponsProps {
 export function Coupons({ coupons }: CouponsProps) {
   return (
     <View style={[s.container, coupons === 0 && s.containerDisabled]}>
-      <IconTicket 
-        size={24} 
+      <IconTicket
+        size={24}
         color={coupons > 0 ? colors.red.base : colors.gray[400]}
       />
 

@@ -1,9 +1,15 @@
 import { IconTicket } from '@tabler/icons-react-native'
-import { Image, Text, TouchableOpacity, TouchableOpacityProps, View } from 'react-native'
+import {
+  Image,
+  Text,
+  TouchableOpacity,
+  type TouchableOpacityProps,
+  View,
+} from 'react-native'
 
-import { s } from './styles'
+import type { FetchPlacesResponse } from '@/api'
 import { colors } from '@/styles/theme'
-import { FetchPlacesResponse } from '@/api'
+import { s } from './styles'
 
 interface PlaceProps extends TouchableOpacityProps {
   data: FetchPlacesResponse
@@ -17,10 +23,7 @@ export function Place({ data, ...props }: PlaceProps) {
       <View style={s.content}>
         <Text style={s.name}>{data.name}</Text>
 
-        <Text
-          numberOfLines={2}
-          style={s.description}
-        >
+        <Text numberOfLines={2} style={s.description}>
           {data.description}
         </Text>
 
@@ -28,7 +31,9 @@ export function Place({ data, ...props }: PlaceProps) {
           <IconTicket size={16} color={colors.red.base} />
 
           <Text style={s.tickets}>
-            {data.coupons === 1 ? '1 cupom disponível' : `${data.coupons} cupons disponíveis`}
+            {data.coupons === 1
+              ? '1 cupom disponível'
+              : `${data.coupons} cupons disponíveis`}
           </Text>
         </View>
       </View>

@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { FlatList } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
-import { s } from './styles'
-import { Category } from '../category'
 import { useFetchCategories } from '@/api'
+import { Category } from '../category'
+import { s } from './styles'
 
 interface CategoriesProps {
   selected: string | null
@@ -14,12 +14,12 @@ interface CategoriesProps {
 export function Categories({ selected, onSelect }: CategoriesProps) {
   const insets = useSafeAreaInsets()
   const { data: categories } = useFetchCategories()
-  
+
   useEffect(() => {
     if (categories && categories.length > 0) {
       onSelect(categories[0].id)
     }
-  }, [categories])
+  }, [categories, onSelect])
 
   if (!categories || categories.length === 0) {
     return
@@ -29,7 +29,7 @@ export function Categories({ selected, onSelect }: CategoriesProps) {
     <FlatList
       horizontal
       data={categories}
-      keyExtractor={(item) => item.id}
+      keyExtractor={item => item.id}
       contentContainerStyle={s.content}
       showsHorizontalScrollIndicator={false}
       style={[s.container, { top: insets.top + 36 }]}

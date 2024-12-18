@@ -1,12 +1,12 @@
-import { useState } from 'react'
 import { router } from 'expo-router'
+import { useState } from 'react'
 import { Text, View } from 'react-native'
 import MapView, { Callout, Marker } from 'react-native-maps'
 
 import { useFetchPlaces } from '@/api'
+import { Categories } from '@/components/categories'
 import { Places } from '@/components/places'
 import { colors, fontFamily } from '@/styles/theme'
-import { Categories } from '@/components/categories'
 
 const currentLocation = {
   latitude: -23.561187293883442,
@@ -40,7 +40,7 @@ export default function Home() {
           }}
         />
 
-        {places?.map((item) => {
+        {places?.map(item => {
           return (
             <Marker
               key={item.id}

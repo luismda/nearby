@@ -1,9 +1,9 @@
-import { ComponentType } from 'react'
-import { View, Text } from 'react-native'
-import { IconProps } from '@tabler/icons-react-native'
+import type { IconProps } from '@tabler/icons-react-native'
+import type { ComponentType } from 'react'
+import { Text, View } from 'react-native'
 
-import { s } from './styles'
 import { colors } from '@/styles/theme'
+import { s } from './styles'
 
 interface StepProps {
   title: string

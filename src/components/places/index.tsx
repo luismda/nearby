@@ -1,12 +1,12 @@
+import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet'
 import { router } from 'expo-router'
 import { useMemo, useRef } from 'react'
 import { Text, useWindowDimensions } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
-import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet'
 
-import { s } from './styles'
+import type { FetchPlacesResponse } from '@/api'
 import { Place } from '../place'
-import { FetchPlacesResponse } from '@/api'
+import { s } from './styles'
 
 interface PlacesProps {
   data: FetchPlacesResponse[]
@@ -17,14 +17,18 @@ export function Places({ data }: PlacesProps) {
   const dimensions = useWindowDimensions()
   const bottomSheetRef = useRef<BottomSheet>(null)
 
-  const maxContentSize = useMemo(() =>
-    dimensions.height - (insets.top + 128),
-  [dimensions, insets])
+  const maxContentSize = useMemo(
+    () => dimensions.height - (insets.top + 128),
+    [dimensions, insets]
+  )
 
-  const snapPoints = useMemo(() => ({
-    min: 278,
-    max: maxContentSize,
-  }), [maxContentSize])
+  const snapPoints = useMemo(
+    () => ({
+      min: 278,
+      max: maxContentSize,
+    }),
+    [maxContentSize]
+  )
 
   return (
     <BottomSheet
@@ -37,7 +41,7 @@ export function Places({ data }: PlacesProps) {
     >
       <BottomSheetFlatList
         data={data}
-        keyExtractor={(item) => item.id}
+        keyExtractor={item => item.id}
         contentContainerStyle={s.content}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
