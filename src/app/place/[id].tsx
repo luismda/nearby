@@ -8,7 +8,7 @@ import {
 import { CameraView, useCameraPermissions } from 'expo-camera'
 import { Redirect, useLocalSearchParams } from 'expo-router'
 import { useMemo, useRef, useState } from 'react'
-import { Modal, Text, View } from 'react-native'
+import { Modal, ScrollView, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 import { useGetPlace, useRescueCoupon } from '@/api'
@@ -71,7 +71,10 @@ export default function Place() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={{ flexGrow: 1 }}
+    >
       <Cover uri={place.cover} />
       <Details data={place} />
 
@@ -88,7 +91,7 @@ export default function Place() {
           <Button.Icon icon={IconMapPin} />
         </Button>
 
-        <Button style={{ flex: 1 }} onPress={handleOpenCamera}>
+        <Button style={{ flex: 1 }} disabled={place.coupons === 0} onPress={handleOpenCamera}>
           <Button.Icon icon={IconScan} />
           <Button.Title>Ler QR Code</Button.Title>
         </Button>
@@ -209,6 +212,6 @@ export default function Place() {
           </BottomSheetView>
         </BottomSheet>
       )}
-    </View>
+    </ScrollView>
   )
 }

@@ -1,12 +1,15 @@
 import {
   IconMapPin,
   IconPhone,
+  IconTicket,
   IconToolsKitchen2,
 } from '@tabler/icons-react-native'
 import { Text, View } from 'react-native'
 
 import type { GetPlaceResponse } from '@/api'
+import { useGetUsedCoupons } from '@/storage'
 import { colors } from '@/styles/theme'
+import dayjs from 'dayjs'
 import { Coupons } from '../coupons'
 import { Info } from '../info'
 import { s } from './styles'
@@ -16,6 +19,8 @@ interface DetailsProps {
 }
 
 export function Details({ data }: DetailsProps) {
+  const { data: usedCoupons } = useGetUsedCoupons(data.id)
+
   return (
     <View style={s.container}>
       <View style={s.header}>
@@ -45,6 +50,23 @@ export function Details({ data }: DetailsProps) {
         <Info icon={IconMapPin} description={data.address} />
         <Info icon={IconPhone} description={data.phone} />
       </View>
+
+      {usedCoupons && usedCoupons.length > 0 && (
+        <View>
+          <Text style={s.title}>Cupons usados</Text>
+
+          {usedCoupons?.map(date => {
+            return (
+              <View key={date} style={s.usedCoupon}>
+                <IconTicket size={16} color={colors.green.light} />
+                <Text style={s.date}>
+                  {dayjs(date).format('DD/MM/YY [às] hh:mm')}
+                </Text>
+              </View>
+            )
+          })}
+        </View>
+      )}
     </View>
   )
 }

@@ -46,4 +46,15 @@ export const s = StyleSheet.create({
     color: colors.gray[500],
     fontFamily: fontFamily.regular,
   },
+  usedCoupon: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  date: {
+    fontSize: 14,
+    lineHeight: 24,
+    fontFamily: fontFamily.regular,
+    color: colors.gray[500],
+  },
 })

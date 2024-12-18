@@ -1,3 +1,4 @@
+import { addUsedCoupon } from '@/storage'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { rescueCoupon } from '../rescue-coupon'
 
@@ -6,10 +7,17 @@ export function useRescueCoupon() {
 
   return useMutation({
     mutationFn: rescueCoupon,
-    onSuccess: placeId => {
-      return queryClient.invalidateQueries({
-        queryKey: ['place', placeId],
-      })
+    onSuccess: async (_, placeId) => {
+      await addUsedCoupon(placeId)
+
+      return Promise.all([
+        queryClient.invalidateQueries({
+          queryKey: ['used-coupons', placeId],
+        }),
+        queryClient.invalidateQueries({
+          queryKey: ['place', placeId],
+        }),
+      ])
     },
   })
 }

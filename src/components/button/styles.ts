@@ -11,6 +11,18 @@ export const s = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     gap: 14,
+    shadowColor: colors.green.base,
+    shadowOffset: {
+      width: 0,
+      height: 7,
+    },
+    shadowOpacity: 0.43,
+    shadowRadius: 9.51,
+    elevation: 5,
+  },
+  containerDisabled: {
+    opacity: 0.7,
+    shadowColor: 'transparent',
   },
   title: {
     fontSize: 16,
