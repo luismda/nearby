@@ -6,7 +6,7 @@ import {
   IconTicket,
 } from '@tabler/icons-react-native'
 import { CameraView, useCameraPermissions } from 'expo-camera'
-import { Redirect, useLocalSearchParams } from 'expo-router'
+import { Redirect, router, useLocalSearchParams } from 'expo-router'
 import { useMemo, useRef, useState } from 'react'
 import { Modal, ScrollView, Text, View } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -31,7 +31,7 @@ export default function Place() {
   const [isCameraModalOpened, setIsCameraModalOpened] = useState(false)
 
   const params = useLocalSearchParams<{ id: string }>()
-  const { data: place, isLoading } = useGetPlace(params.id)
+  const { data: place, isLoading: isLoadingPlace } = useGetPlace(params.id)
 
   const {
     data: couponCode,
@@ -66,7 +66,7 @@ export default function Place() {
     })
   }
 
-  if (isLoading) {
+  if (isLoadingPlace) {
     return <Loading />
   }
 
@@ -91,7 +91,10 @@ export default function Place() {
           paddingBottom: insets.bottom + 32,
         }}
       >
-        <Button style={{ width: 56 }}>
+        <Button
+          style={{ width: 56 }}
+          onPress={() => router.navigate(`/place-map/${params.id}`)}
+        >
           <Button.Icon icon={IconMapPin} />
         </Button>
 

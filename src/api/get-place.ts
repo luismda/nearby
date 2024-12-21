@@ -8,6 +8,8 @@ export interface GetPlaceResponse {
   address: string
   phone: string
   coupons: number
+  latitude: number
+  longitude: number
   rules: {
     id: string
     description: string
